@@ -9,6 +9,7 @@ console.log(totalScore);
 var totalScore2 = 0;
 myArray.forEach(element => totalScore2 += roundScoreFunction2(element));
 console.log(totalScore2);
+console.log("Changes")
 
 function roundScoreFunction(element) {
     switch (element) {
