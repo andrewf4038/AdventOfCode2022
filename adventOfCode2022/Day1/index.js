@@ -6,12 +6,12 @@ var maxCalories = 0;
 var elfCalories = 0;
 var elfArray = [];
 myArray.forEach(element => {
-    if (element == "") {
-        elfArray.push(elfCalories);
-        elfCalories = 0;
-    } else {
-        elfCalories += Number(element);
-    }
+	if (element == "") {
+		elfArray.push(elfCalories);
+		elfCalories = 0;
+	} else {
+		elfCalories += Number(element);
+	}
 }
 );
 
