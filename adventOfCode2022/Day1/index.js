@@ -1,6 +1,6 @@
 const fs = require("fs");
 const text = fs.readFileSync("./input.txt", encoding = "utf8");
-const myArray = text.split("\r\n");
+const myArray = text.split("\n");
 
 var maxCalories = 0;
 var elfCalories = 0;
