@@ -1,37 +1,39 @@
-const { group } = require("console");
 const fs = require("fs");
-const { arrayBuffer } = require("stream/consumers");
 const text = fs.readFileSync("./input.txt", encoding = "utf8");
 const myArray = text.split("\n");
 
 const priorityNumber = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var partOneSum = 0;
+var sameItem = "";
 
-myArray.forEach(string => {
-    firstCompartment = string.substring(0, string.length / 2);
-    secondCompartment = string.substring(string.length / 2);
-    partOneSum += compartmentComparePriority(firstCompartment, secondCompartment);
+myArray.forEach(rucksack => {
+    firstCompartment = rucksack.substring(0, rucksack.length / 2);
+    secondCompartment = rucksack.substring(rucksack.length / 2);
+    let { item } = compareItem(firstCompartment, secondCompartment);
+    partOneSum += itemPriority(item);
+    // partOneSum += compartmentComparePriority(firstCompartment, secondCompartment);
 }
 )
 console.log("Solution to part 1 is %d", partOneSum);
 
-const groups = []
+const groups = [];
 groupReducer(myArray);
+console.log(groups[0])
 groups.forEach(group => {
-    // Compare group 1 and group 2 and find one that is the same
-    // compare group 2 and group 3 and see if that value is in there?
+    let { item, itemIndex } = compareItem(group[0], group[1]);
+    console.log(item);
+    console.log(itemIndex);
 });
 
-console.log(groups[0])
 
-// console.log(myArray.slice(0, 3));
-// console.log("----");
-// console.log(myArray.slice(3, 6));
 
-function compartmentComparePriority(string1, string2) {
-    for (const i in string1) {
+function compareItem(string1, string2, iter = 0) {
+    for (let i = iter; i < string1.length && i < string2.length; i++) {
         if (string2.includes(string1[i]) === true) {
-            return priorityNumber.indexOf(string1[i]) + 1;
+            return {
+                'item': string1[i],
+                'itemIndex': i
+            }
         }
     }
 }
@@ -41,4 +43,8 @@ function groupReducer(array) {
     if (array.length >= 3) {
         groupReducer(array);
     }
+}
+
+function itemPriority(item) {
+    return priorityNumber.indexOf(item) + 1;
 }
