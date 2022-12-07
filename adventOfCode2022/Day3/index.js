@@ -24,9 +24,6 @@ groups.forEach(group => {
 });
 console.log("Solution to part 2 is %d", partTwoSum);
 
-
-
-
 function compareItem(string1, string2, string3 = "", iter = 0) {
     for (let i = iter; i < string1.length || i < string2.length || i <= string3.length; i++) {
         if (string3 === "" && string2.includes(string1[i])) {
