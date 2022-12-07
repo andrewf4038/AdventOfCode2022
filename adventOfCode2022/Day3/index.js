@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { nextTick } = require("process");
 const text = fs.readFileSync("./input.txt", encoding = "utf8");
 const myArray = text.split("\n");
 
