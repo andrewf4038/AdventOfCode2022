@@ -2,7 +2,6 @@ const fs = require("fs");
 const text = fs.readFileSync("./input.txt", encoding = "utf8");
 const inputs = text.split("\n");
 
-
 var folders = {};
 var cwd = "";
 var cwid = 0;
@@ -10,15 +9,13 @@ var subs = {};
 var sub = ""
 var id = 0;
 
-
 inputs.forEach((input, index) => {
     if (input.match(/\$.cd/g) && input.slice(5, 7) !== "..") {
         cwd = input.slice(5);
         cwid = subCheck(cwid, cwd);
-        if (!folders[cwid]) {
-            folders[cwid] = createDir(cwd);
-        }
-        ;
+    }
+    if (!folders[cwid]) {
+        folders[cwid] = createDir(cwd);
     } else if (input.match(/\d+/g)) {
         var fileSize = input.match(/\d+/g)[0];
         if (folders[cwid]) {
@@ -32,8 +29,10 @@ inputs.forEach((input, index) => {
         subs[id] = cwid;
         folders[id] = createDir(sub);
         ;
-    } else if (input.match(/\$.cd.\.{2}/g))
+    } else if (input.match(/\$.cd.\.{2}/g)) {
         cwid = subs[cwid];
+    }
+
 })
 
 var folderTotal = 0;
@@ -56,9 +55,6 @@ for (const folder in folders) {
     if (currentFolderSize < deletedFolderSize) { deletedFolderSize = currentFolderSize }
 }
 console.log("The answer to part 2 is %d", deletedFolderSize);
-
-
-
 
 function sizeRollup(cwid, size) {
     var parent = Number(subs[cwid]);
