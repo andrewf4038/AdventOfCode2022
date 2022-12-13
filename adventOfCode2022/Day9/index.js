@@ -1,4 +1,3 @@
-const { timeEnd } = require("console");
 const fs = require("fs");
 const text = fs.readFileSync("./input.txt", encoding = "utf8");
 const directions = text.split("\n");
