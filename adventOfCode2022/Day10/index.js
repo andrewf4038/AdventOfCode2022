@@ -27,10 +27,29 @@ console.log("The answer to part one is %d", partOne);
 
 const image = [];
 var spriteCenter = 0;
+var signal = 0;
+const line = [];
 
-for (i = 0; i < signalStrength.length; i++) {
-    spriteCenter = registerPosition(signalStrength, i);
-    console.log(spriteCenter);
+
+for (let i = 0; i < Math.floor(signalStrength.length / 40); i++) {
+    lineGenerator(i);
+}
+
+function lineGenerator(j) {
+    var myString = "";
+    for (let i = 0; i < 40; i++) {
+        if (i === registerPosition(signalStrength, i + 1 + 40 * j)) {
+            myString += "#"
+        } else if (i === registerPosition(signalStrength, i + 1 + 40 * j) + 1) {
+            myString += "#"
+        } else if (i === registerPosition(signalStrength, i + 1 + 40 * j) - 1) {
+            myString += "#"
+        } else {
+            myString += "."
+
+        }
+    }
+    console.log(myString);
 }
 
 
@@ -44,4 +63,10 @@ function registerPosition(signalStrength, cycleNum) {
     return myArray.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 }
 
+function toString(toString, myArray) {
 
+    myArray.forEach(el => {
+        toString = toString + el;
+    })
+    return toString;
+}
